@@ -12,10 +12,22 @@ Mostra quantas vezes cada termo repete;
 '''
 
 # Leitura de arquivo e conversão para matriz
-with open('matriz1.txt') as f:
-    matriz1 = [[int(numero) for numero in linha.split()] for linha in f]
-with open('matriz2.txt') as f:
-    matriz2 = [[int(numero) for numero in linha.split()] for linha in f]
+def arq_matriz(matriz):
+    nome_arquivo = input("Digite o nome do arquivo que deseja abrir: ")
+    try:
+        # Tentar abrir o arquivo
+       with open(nome_arquivo) as f:
+          matriz = [[int(numero) for numero in linha.split()] for linha in f]
+    except FileNotFoundError:
+        print(f"O arquivo '{nome_arquivo}' não foi encontrado.")
+    except Exception as e:
+       print(f"Ocorreu um erro ao abrir o arquivo: {e}")
+    return matriz
+
+matriz1 = matriz2 = []
+matriz1 = arq_matriz(matriz1)
+matriz2 = arq_matriz(matriz2)
+
 
 # Conta a quantidade de elementos repetidos
 def contar_repeticoes(matriz):
